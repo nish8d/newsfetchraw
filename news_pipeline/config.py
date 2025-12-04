@@ -1,7 +1,12 @@
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
 API_KEYS = {
-    "newsdata": "pub_3b747791334743199b282538d6ce7a83",
-    "newsapi": "ae4083beabfc4fb48bacee5c03f7cf4a",
-    "gnews": "ab52db50b1d8a4a8e2b6f231e4368e5b"
+    "newsdata": os.getenv("NEWSDATA_KEY"),
+    "newsapi": os.getenv("NEWSAPI_KEY"),
+    "gnews": os.getenv("GNEWS_KEY")
 }
 
 EMBED_MODEL_NAME = "all-mpnet-base-v2"
