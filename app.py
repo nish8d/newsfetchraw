@@ -76,7 +76,7 @@ with st.sidebar:
     
     keyword = st.text_input(
         "Enter search keyword/topic:",
-        value="gasoline industry",
+        value="Gasoline Industry",
         help="Enter the topic or keyword you want to search for"
     )
     
