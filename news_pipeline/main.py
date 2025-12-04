@@ -32,7 +32,7 @@ def get_all_news(keyword):
 
 
 if __name__ == "__main__":
-    topic = "gasoline industry"
+    topic = ""
     results = get_all_news(topic)
 
     for article in results:
