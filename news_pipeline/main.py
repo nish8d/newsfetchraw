@@ -7,6 +7,8 @@ from processing.dedupe import dedupe_events_ai
 from embeddings.embedder import embed_articles
 from config import API_KEYS
 
+import json, time
+
 def get_all_news(keyword):
     print(f"\nSearching for: {keyword}\n")
     raw = []
@@ -30,12 +32,23 @@ def get_all_news(keyword):
     print(f"Final results: {len(ranked)}")
     return ranked
 
-
 if __name__ == "__main__":
-    topic = ""
+    topic = "Fuel industry"
     results = get_all_news(topic)
 
     for article in results:
         print(f"[{article['source']}] (Score: {article['score']}) {article['title']}")
         print(f"Link: {article['link']}")
         print("-" * 80)
+
+    # Remove embeddings — they are NumPy arrays, not JSON-serializable
+    for article in results:
+        article.pop("embedding", None)
+
+    # Use a fixed filename
+    filename = "resultsgen.json"
+
+    with open(filename, "w") as f:
+        json.dump(results, f, indent=2)
+
+    print(f"\nSaved results to {filename}")
